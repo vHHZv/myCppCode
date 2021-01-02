@@ -1,0 +1,82 @@
+#include<iostream>
+using namespace std;
+class Point
+{
+public:
+	void setX(int x)
+	{
+		pX = x;
+	}
+	int getX()
+	{
+		return pX;
+	}
+	void setY(int y)
+	{
+		pY = y;
+	}
+	int getY()
+	{
+		return pY;
+	}
+private:
+	int pX;
+	int pY;
+};
+class Circle
+{
+public:
+	void setcPoint(Point point)
+	{
+		cPoint = point;
+	}
+	Point getcPoint()
+	{
+		return cPoint;
+	}
+	void setcR(int r)
+	{
+		cR = r;
+	}
+	int getcR()
+	{
+		return cR;
+	}
+private:
+	Point cPoint;
+	int cR;
+};
+void compare(Circle &c, Point &p)  //判断关系函数
+{
+	int distance = (c.getcPoint().getX() - p.getX()) * (c.getcPoint().getX() - p.getX()) + (c.getcPoint().getY() - p.getY()) * (c.getcPoint().getY() - p.getY());
+	int rDistance = c.getcR() * c.getcR();
+	if (distance == rDistance)
+	{
+		cout << "点在圆上" << endl;
+	}
+	if (distance >= rDistance)
+	{
+		cout << "点在圆外" << endl;
+	}
+	if (distance <= rDistance)
+	{
+		cout << "点在圆内" << endl;
+	}
+}
+int main()
+{
+	//创建圆
+	Circle c;
+	c.setcR(10); //设置半径
+	Point center;  //设置圆心坐标
+	center.setX(0);
+	center.setY(0);
+	c.setcPoint(center);  //设置圆心
+	//创建一点
+	Point p;
+	p.setX(10);  //设置点坐标
+	p.setY(11);
+	compare(c, p); //用全局函数判断关系
+	//点在圆外
+	return 0;
+}
